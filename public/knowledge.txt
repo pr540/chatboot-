@@ -1,0 +1,83 @@
+Q: what is gentaroo ai
+A: Gentaroo AI is an intelligent customer support chatbot that provides instant, accurate answers 24/7. It uses AI-powered responses based on your knowledge base to help users quickly and efficiently.
+
+Q: what can you do
+A: I can help you with product information, pricing, account setup, billing questions, technical support, and general inquiries. Just ask me anything!
+
+Q: how does it work
+A: Gentaroo AI works by understanding your questions and matching them to a knowledge base of answers. It provides instant responses without any waiting time.
+
+Q: is it secure
+A: Yes! Gentaroo AI is fully secure and private. All your data is encrypted and never shared with third parties. Your conversations are completely confidential.
+
+Q: is my data safe
+A: Absolutely. Your data is encrypted end-to-end and never shared or sold. We take privacy very seriously and comply with all major data protection regulations.
+
+Q: what languages do you support
+A: Gentaroo AI supports multiple languages including English, Spanish, French, German, and Hindi. We are continuously adding more languages to serve you better.
+
+Q: how many languages
+A: We currently support English, Spanish, French, German, and Hindi. More languages are being added regularly.
+
+Q: what are the pricing plans
+A: We offer three flexible pricing plans: Basic (ideal for individuals and small teams), Pro (for growing businesses), and Enterprise (for large organizations with custom needs). Would you like more details on any specific plan?
+
+Q: how much does it cost
+A: Our pricing starts with a free Basic plan. Pro and Enterprise plans are available at competitive rates. Please contact our sales team for a detailed quote tailored to your needs.
+
+Q: is there a free plan
+A: Yes! We offer a free Basic plan so you can get started without any commitment. You can upgrade to Pro or Enterprise as your needs grow.
+
+Q: how do i get started
+A: Getting started is easy! Simply sign up on our website, choose a plan that suits you, and your chatbot will be live within minutes. No coding required.
+
+Q: how to sign up
+A: You can sign up by visiting our website and clicking the "Get Started" button. Fill in your details, choose a plan, and you're ready to go!
+
+Q: how to set up account
+A: After signing up, you'll receive a welcome email with setup instructions. Log in to your dashboard, customize your chatbot, and add it to your website with a simple embed code.
+
+Q: how to contact support
+A: You can reach our support team via email, live chat, or by submitting a ticket on our website. We're available 24/7 to help you.
+
+Q: what is the response time
+A: Gentaroo AI provides instant responses — no waiting! Our AI answers questions in under a second, keeping your customers happy.
+
+Q: can i customize the chatbot
+A: Yes! You can fully customize the chatbot's name, avatar, colors, and responses to match your brand. Enterprise users get advanced customization options.
+
+Q: what integrations are available
+A: Gentaroo AI integrates with popular platforms like websites, CRM systems, WhatsApp, and more. Contact us for a full list of available integrations.
+
+Q: how to update knowledge base
+A: You can update your knowledge base anytime from the admin dashboard. Simply add, edit, or remove Q&A pairs and changes take effect immediately.
+
+Q: can it handle multiple users
+A: Yes, Gentaroo AI can handle thousands of simultaneous users without any performance degradation, ensuring smooth support at scale.
+
+Q: what is smart conversations
+A: Smart Conversations is a feature that enables AI-powered responses based on your knowledge base, making interactions feel natural and intelligent.
+
+Q: what is instant answers
+A: Instant Answers ensures users get accurate responses immediately — no waiting queues, no delays. Your customers get help exactly when they need it.
+
+Q: how do i cancel subscription
+A: You can cancel your subscription anytime from your account settings. There are no cancellation fees. Your account remains active until the end of the billing period.
+
+Q: is there a trial period
+A: Yes, we offer a free trial so you can explore all Pro features before committing. No credit card required for the trial.
+
+Q: hello
+A: Hello! Welcome to Gentaroo AI support. I'm here to help you. What would you like to know today?
+
+Q: hi there
+A: Hi! Great to see you here. How can I assist you today?
+
+Q: bye
+A: Goodbye! If you have more questions later, don't hesitate to come back. Have a wonderful day!
+
+Q: thank you
+A: You're welcome! It was my pleasure to assist you. Is there anything else I can help you with?
+
+Q: thanks
+A: Happy to help! Let me know if you need anything else.
