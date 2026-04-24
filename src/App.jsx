@@ -6,7 +6,7 @@ import './App.css';
 const INITIAL_MESSAGES = [
   {
     id: 1,
-    text: "Hi there! I'm Gentaroo AI, your intelligent assistant. How can I help you today?",
+    text: "Hi there! I'm iHeal Digital AI, your companion for a healthier lifestyle. How can I help you today?",
     sender: 'bot',
     time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
   },
@@ -91,26 +91,26 @@ function searchKnowledge(knowledge, query) {
 function getFallback(input) {
   const t = input.toLowerCase();
   if (/\b(hi|hello|hey|greet|good (morning|afternoon|evening))\b/.test(t))
-    return "Hello! Welcome to Gentaroo AI. I'm here to help you with any questions about our platform. What would you like to know?";
+    return "Hello! Welcome to iHeal Digital. I'm here to help you with any questions about our lifestyle platform. What would you like to know?";
   if (/\b(bye|goodbye|see you|take care|quit)\b/.test(t))
-    return "Goodbye! Feel free to come back anytime. Have a wonderful day!";
+    return "Goodbye! Feel free to come back anytime to discuss your health goals. Have a wonderful day!";
   if (/\b(thank|thanks|thx|appreciate)\b/.test(t))
-    return "You're welcome! Is there anything else I can help you with?";
+    return "You're welcome! Is there anything else I can help you with regarding your wellness journey?";
   if (/\b(price|cost|plan|pricing|paid|free|subscription|billing|charge)\b/.test(t))
-    return "We offer flexible pricing plans — Basic (free), Pro, and Enterprise. Contact our sales team for a custom quote tailored to your needs.";
+    return "For details on our platform accessibility and services, please contact our support team at support@iheal.digital.";
   if (/\b(help|support|assist|issue|problem|trouble)\b/.test(t))
-    return "I'm here to help! You can reach our support team via email, live chat, or by submitting a ticket on our website. We're available 24/7.";
-  if (/\b(security|secure|safe|privacy|private|encrypt|data)\b/.test(t))
-    return "Your data is fully encrypted and never shared with third parties. Gentaroo AI complies with all major data protection regulations.";
+    return "I'm here to help! You can reach the iHeal team at support@iheal.digital or call us at +91-8096510313. We are based in Hyderabad, India.";
+  if (/\b(security|secure|safe|privacy|private|encrypt|data|hipaa)\b/.test(t))
+    return "iHeal is HIPAA compliant. Your health data is fully encrypted and never shared without your consent. We prioritize your privacy above all.";
   if (/\b(language|multilingual|spanish|french|german|hindi)\b/.test(t))
-    return "Gentaroo AI supports English, Spanish, French, German, and Hindi. More languages are being added regularly.";
-  if (/\b(integrat|connect|crm|whatsapp|platform|embed)\b/.test(t))
-    return "Gentaroo AI integrates with popular platforms like websites, CRM systems, WhatsApp, and more. Contact us for the full list.";
+    return "Currently, our platform primary focuses on English, but we are expanding to support more languages to reach a global community.";
+  if (/\b(app|mobile|ios|android|download)\b/.test(t))
+    return "The iHeal app is available on both the Apple App Store and Google Play Store. Download it to track your habits on the go!";
   if (/\b(cancel|refund|stop|end)\b/.test(t))
-    return "You can cancel your subscription anytime from your account settings with no cancellation fees. Your account stays active until the end of the billing period.";
+    return "You can manage your account settings directly in the iHeal mobile app or website.";
   if (/\b(start|sign up|signup|register|begin|onboard)\b/.test(t))
-    return "Getting started is easy! Sign up on our website, choose a plan, and your chatbot will be live within minutes — no coding required.";
-  return "I'm not sure about that specific question. Could you rephrase it, or ask about our pricing, features, security, languages, or how to get started? I'm happy to help!";
+    return "To get started, download the iHeal app or visit our website to create an account and begin your journey towards preventive living.";
+  return "I'm not sure about that specific question. Could you rephrase it, or ask about our services, mission, HIPAA compliance, or how to contact us? I'm happy to help!";
 }
 
 function App() {
@@ -148,7 +148,7 @@ function App() {
     return getFallback(input);
   };
 
-  const handleSend = () => {
+  const handleSend = async () => {
     if (!inputText.trim()) return;
 
     const userMessage = {
@@ -159,11 +159,33 @@ function App() {
     };
 
     const captured = inputText;
-    setMessages((prev) => [...prev, userMessage]);
+    const currentHistory = [...messages, userMessage];
+    setMessages(currentHistory);
     setInputText('');
     setIsTyping(true);
 
-    setTimeout(() => {
+    try {
+      // Try to use the backend if available, fallback to local search
+      const response = await fetch('http://localhost:3001/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: captured, history: currentHistory }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        const botResponse = {
+          id: Date.now() + 1,
+          text: data.response,
+          sender: 'bot',
+          time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+        };
+        setMessages((prev) => [...prev, botResponse]);
+      } else {
+        throw new Error('Backend error');
+      }
+    } catch (err) {
+      console.warn('Backend unavailable, using local knowledge base');
       const botResponse = {
         id: Date.now() + 1,
         text: getBotResponse(captured),
@@ -171,8 +193,9 @@ function App() {
         time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
       };
       setMessages((prev) => [...prev, botResponse]);
+    } finally {
       setIsTyping(false);
-    }, 900);
+    }
   };
 
   const handleKeyPress = (e) => {
@@ -195,14 +218,14 @@ function App() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.8 }}
         >
-          Gentaroo AI
+          iHeal Digital
         </motion.h1>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8, duration: 0.8 }}
         >
-          Your intelligent companion for seamless support.
+          Technology-enabled lifestyle platform for preventive living.
         </motion.p>
         <motion.p
           className="scroll-hint"
@@ -224,10 +247,10 @@ function App() {
         </motion.h2>
         <div className="feature-grid">
           {[
-            { icon: '💬', title: 'Smart Conversations', desc: 'AI-powered responses based on your knowledge base.' },
-            { icon: '⚡', title: 'Instant Answers', desc: 'No waiting — get accurate answers in seconds.' },
-            { icon: '🔒', title: 'Secure & Private', desc: 'Your data is encrypted and never shared.' },
-            { icon: '🌐', title: 'Multi-language', desc: 'Support in English, Spanish, French, German, and Hindi.' },
+            { icon: '🥗', title: 'Preventive Living', desc: 'Tools and habits to stay healthy and prevent lifestyle diseases.' },
+            { icon: '👥', title: 'Community Driven', desc: 'Engagement platform for healthcare experts and communities.' },
+            { icon: '🔒', title: 'HIPAA Compliant', desc: 'Secure health data management with top-tier privacy.' },
+            { icon: '📱', title: 'Mobile First', desc: 'Access your health journey anytime with our iOS and Android apps.' },
           ].map((f) => (
             <motion.div
               key={f.title}
@@ -266,9 +289,9 @@ function App() {
                 <img src="/bot-avatar.png" alt="Bot" />
               </div>
               <div className="header-info">
-                <h2>Gentaroo AI</h2>
+                <h2>iHeal AI</h2>
                 <p>
-                  <span className="online-dot"></span>Online | Customer Support
+                  <span className="online-dot"></span>Online | Wellness Assistant
                 </p>
               </div>
               <div className="close-btn" onClick={() => setIsOpen(false)}>

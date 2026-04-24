@@ -30,7 +30,7 @@
   font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 48px;
-  background: linear-gradient(135deg, #fff 0%, #94a3b8 100%);
+  background: linear-gradient(135deg, #fff 0%, #a7f3d0 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -87,7 +87,7 @@
   width: 200px;
   height: auto;
   margin-bottom: 24px;
-  filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.4));
+  filter: drop-shadow(0 0 20px rgba(16, 185, 129, 0.4));
 }
 
 .hero-section h1 {
@@ -134,21 +134,21 @@
   width: 64px;
   height: 64px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
   color: white;
   border: none;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.5);
+  box-shadow: 0 10px 25px -5px rgba(16, 185, 129, 0.5);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 1001;
 }
 
 .chat-toggle-btn:hover {
   transform: scale(1.1) rotate(5deg);
-  box-shadow: 0 15px 30px -5px rgba(59, 130, 246, 0.6);
+  box-shadow: 0 15px 30px -5px rgba(16, 185, 129, 0.6);
 }
 
 .chat-toggle-btn.active {
@@ -170,13 +170,13 @@
 .bot-avatar {
   width: 40px;
   height: 40px;
-  background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
   overflow: hidden;
 }
 
@@ -202,11 +202,11 @@
 .online-dot {
   width: 8px;
   height: 8px;
-  background: #22c55e;
+  background: #10b981;
   border-radius: 50%;
   display: inline-block;
   margin-right: 6px;
-  box-shadow: 0 0 8px #22c55e;
+  box-shadow: 0 0 8px #10b981;
 }
 
 .message-list {
@@ -242,10 +242,10 @@
 
 .user-message {
   align-self: flex-end;
-  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
   color: white;
   border-bottom-right-radius: 4px;
-  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
 }
 
 .message-time {
@@ -282,12 +282,12 @@
 
 .message-input:focus {
   background: rgba(255, 255, 255, 0.08);
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+  border-color: #10b981;
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
 }
 
 .send-button {
-  background: #3b82f6;
+  background: #10b981;
   color: white;
   border: none;
   width: 44px;
@@ -301,7 +301,7 @@
 }
 
 .send-button:hover {
-  background: #2563eb;
+  background: #059669;
   transform: scale(1.05);
 }
 
