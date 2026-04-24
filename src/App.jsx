@@ -115,11 +115,23 @@ function getFallback(input) {
 
 function App() {
   const [messages, setMessages] = useState(INITIAL_MESSAGES);
-  const [inputText, setInputText] = useState('');
-  const [isTyping, setIsTyping] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
-  const [knowledge, setKnowledge] = useState([]);
+  const [showGreeting, setShowGreeting] = useState(false);
   const messageListRef = useRef(null);
+
+  useEffect(() => {
+    // Show greeting bubble after 3 seconds
+    const timer = setTimeout(() => {
+      if (!isOpen) setShowGreeting(true);
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, [isOpen]);
+
+  const SUGGESTED_QUESTIONS = [
+    "What is iHeal?",
+    "How to join as expert?",
+    "Is it HIPAA compliant?",
+    "Contact support"
+  ];
 
   useEffect(() => {
     fetch('/knowledge.txt')
@@ -148,28 +160,28 @@ function App() {
     return getFallback(input);
   };
 
-  const handleSend = async () => {
-    if (!inputText.trim()) return;
+  const handleSend = async (overrideText) => {
+    const text = overrideText || inputText;
+    if (!text.trim()) return;
 
     const userMessage = {
       id: Date.now(),
-      text: inputText,
+      text: text,
       sender: 'user',
       time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
     };
 
-    const captured = inputText;
     const currentHistory = [...messages, userMessage];
     setMessages(currentHistory);
     setInputText('');
     setIsTyping(true);
+    setShowGreeting(false);
 
     try {
-      // Try to use the backend if available, fallback to local search
       const response = await fetch('http://localhost:3001/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: captured, history: currentHistory }),
+        body: JSON.stringify({ message: text, history: currentHistory }),
       });
 
       if (response.ok) {
@@ -185,10 +197,9 @@ function App() {
         throw new Error('Backend error');
       }
     } catch (err) {
-      console.warn('Backend unavailable, using local knowledge base');
       const botResponse = {
         id: Date.now() + 1,
-        text: getBotResponse(captured),
+        text: getBotResponse(text),
         sender: 'bot',
         time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
       };
@@ -267,13 +278,32 @@ function App() {
         </div>
       </div>
 
-      <button
-        className={`chat-toggle-btn ${isOpen ? 'active' : ''}`}
-        onClick={() => setIsOpen((prev) => !prev)}
-        aria-label="Toggle chat"
-      >
-        {isOpen ? <X size={28} /> : <MessageSquare size={28} />}
-      </button>
+      <div className="chat-launcher">
+        <AnimatePresence>
+          {showGreeting && !isOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: 20, scale: 0.8 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 20, scale: 0.8 }}
+              className="greeting-popup"
+              onClick={() => setIsOpen(true)}
+            >
+              Have a question? I'm here to help! 👋
+              <div className="popup-arrow"></div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+        <button
+          className={`chat-toggle-btn ${isOpen ? 'active' : ''}`}
+          onClick={() => {
+            setIsOpen((prev) => !prev);
+            setShowGreeting(false);
+          }}
+          aria-label="Toggle chat"
+        >
+          {isOpen ? <X size={28} /> : <MessageSquare size={28} />}
+        </button>
+      </div>
 
       <AnimatePresence>
         {isOpen && (
@@ -325,6 +355,14 @@ function App() {
                   <div className="dot"></div>
                 </motion.div>
               )}
+            </div>
+
+            <div className="suggestion-container">
+              {messages.length < 3 && SUGGESTED_QUESTIONS.map((q) => (
+                <button key={q} className="suggestion-chip" onClick={() => handleSend(q)}>
+                  {q}
+                </button>
+              ))}
             </div>
 
             <div className="input-area">
